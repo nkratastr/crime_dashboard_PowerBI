@@ -1,0 +1,11 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Ruwe data (te groot voor git)
+data/raw/
+data/processed/
+
+# Power BI temp bestanden
+*.tmp
