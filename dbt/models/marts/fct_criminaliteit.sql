@@ -19,6 +19,7 @@ select
     p.jaar_int                          as jaar,
     p.status                            as jaar_status,
     r.regio_naam,
+    r.regio_type,
     m.soort_misdrijf,
     m.omschrijving                      as misdrijf_omschrijving,
     f.totaal_geregistreerd,
