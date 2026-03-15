@@ -12,3 +12,8 @@ data/processed/
 
 # Credentials (nooit in repo!)
 .env
+
+# dbt logs en target
+dbt/logs/
+dbt/target/
+logs/
