@@ -9,3 +9,6 @@ data/processed/
 
 # Power BI temp bestanden
 *.tmp
+
+# Credentials (nooit in repo!)
+.env
