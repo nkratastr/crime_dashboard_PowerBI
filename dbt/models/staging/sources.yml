@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw
+    database: CRIME_DB
+    schema: RAW
+    tables:
+      - name: CRIMINALITEIT_OBSERVATIONS
+      - name: DIM_SOORT_MISDRIJF
+      - name: DIM_REGIO
+      - name: DIM_PERIODE
