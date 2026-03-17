@@ -1,0 +1,174 @@
+<mxfile host="app.diagrams.net" modified="2026-03-17" agent="Claude" version="21.0.0">
+  <diagram name="Crime Dashboard Pipeline" id="crime-dashboard-architecture">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- TITLE -->
+        <mxCell id="title" value="Crime Dashboard — Data Pipeline Architecture" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+          <mxGeometry x="327" y="30" width="1000" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ===== LAYER LABELS ===== -->
+        <mxCell id="lbl1" value="BRONLAAG" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#555555;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="270" y="160" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl2" value="INGEST" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#555555;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="270" y="330" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl3" value="WAREHOUSE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#555555;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="270" y="530" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl4" value="TRANSFORMATIE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#555555;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="270" y="750" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl5" value="VISUALISATIE" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=11;fontStyle=1;fontColor=#555555;rotation=-90;" vertex="1" parent="1">
+          <mxGeometry x="270" y="960" width="100" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ===== LAYER SWIM LANES (backgrounds) ===== -->
+        <mxCell id="bg1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f4fd;strokeColor=#b3d9f5;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="310" y="110" width="1040" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="bg2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8e1;strokeColor=#ffe082;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="310" y="290" width="1040" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="bg3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e9;strokeColor=#a5d6a7;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="310" y="450" width="1040" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="bg4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#ce93d8;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="310" y="640" width="1040" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="bg5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fce4ec;strokeColor=#f48fb1;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="310" y="900" width="1040" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- ===== SOURCE LAYER ===== -->
+        <!-- CBS -->
+        <mxCell id="cbs" value="&lt;b&gt;CBS Open Data&lt;/b&gt;&lt;br&gt;StatLine API&lt;br&gt;criminaliteit_observations.csv&lt;br&gt;regios.csv" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="420" y="140" width="220" height="80" as="geometry" />
+        </mxCell>
+        <!-- Politie -->
+        <mxCell id="politie" value="&lt;b&gt;Politie Open Data&lt;/b&gt;&lt;br&gt;Criminaliteitsstatistieken&lt;br&gt;per regio / jaar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="830" y="140" width="220" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- ===== INGEST LAYER ===== -->
+        <mxCell id="fetch" value="&lt;b&gt;fetch_data.py&lt;/b&gt;&lt;br&gt;Download CBS data&lt;br&gt;Sla op als CSV in data/raw/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="420" y="315" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="load" value="&lt;b&gt;load_data.py&lt;/b&gt;&lt;br&gt;Lees CSV → pandas DataFrame&lt;br&gt;Upload naar Snowflake RAW&lt;br&gt;via snowflake-connector" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="830" y="305" width="220" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- ===== SNOWFLAKE LAYER ===== -->
+        <!-- Snowflake box -->
+        <mxCell id="sf_box" value="&lt;b&gt;Snowflake — CRIME_DASHBOARD_DB&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="380" y="465" width="720" height="120" as="geometry" />
+        </mxCell>
+        <!-- RAW schema -->
+        <mxCell id="raw" value="&lt;b&gt;RAW schema&lt;/b&gt;&lt;br&gt;CRIMINALITEIT_OBSERVATIONS&lt;br&gt;REGIOS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#82b366;strokeColor=#5a8a4a;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="410" y="510" width="200" height="60" as="geometry" />
+        </mxCell>
+        <!-- DBT_DEV schema -->
+        <mxCell id="dev" value="&lt;b&gt;DBT_DEV schema&lt;/b&gt;&lt;br&gt;staging + marts (dev)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#82b366;strokeColor=#5a8a4a;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="640" y="510" width="180" height="60" as="geometry" />
+        </mxCell>
+        <!-- DBT_PROD schema -->
+        <mxCell id="prod" value="&lt;b&gt;DBT_PROD schema&lt;/b&gt;&lt;br&gt;staging + marts (prod)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2d7a2d;strokeColor=#1a5c1a;fontColor=#ffffff;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="850" y="510" width="200" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- ===== DBT LAYER ===== -->
+        <!-- dbt label -->
+        <mxCell id="dbt_label" value="&lt;b&gt;dbt (dbt-snowflake)&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#6a0dad;" vertex="1" parent="1">
+          <mxGeometry x="700" y="650" width="200" height="25" as="geometry" />
+        </mxCell>
+        <!-- Staging -->
+        <mxCell id="staging" value="&lt;b&gt;Staging modellen&lt;/b&gt;&lt;br&gt;stg_criminaliteit&lt;br&gt;stg_regios&lt;br&gt;&lt;i&gt;Schonen, hernoemen, casten&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="420" y="680" width="220" height="80" as="geometry" />
+        </mxCell>
+        <!-- Marts -->
+        <mxCell id="marts" value="&lt;b&gt;Marts modellen&lt;/b&gt;&lt;br&gt;dim_regio&lt;br&gt;fct_criminaliteit&lt;br&gt;&lt;i&gt;Business logica, regio_type&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5c5e8;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="830" y="680" width="220" height="80" as="geometry" />
+        </mxCell>
+        <!-- dbt tests -->
+        <mxCell id="tests" value="&lt;b&gt;dbt tests&lt;/b&gt;&lt;br&gt;not_null, unique&lt;br&gt;accepted_values" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ead1f5;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="630" y="680" width="160" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- ===== VISUALISATIE LAYER ===== -->
+        <mxCell id="pbi" value="&lt;b&gt;Power BI Dashboard&lt;/b&gt;&lt;br&gt;Directe Snowflake verbinding&lt;br&gt;Criminaliteit per gemeente / provincie&lt;br&gt;Trends over tijd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="590" y="920" width="480" height="80" as="geometry" />
+        </mxCell>
+
+        <!-- ===== CONFIG / SECRETS SIDEBAR ===== -->
+        <mxCell id="env_box" value="&lt;b&gt;.env (lokaal, niet in git)&lt;/b&gt;&lt;br&gt;SNOWFLAKE_ACCOUNT&lt;br&gt;SNOWFLAKE_USER / PASSWORD&lt;br&gt;SNOWFLAKE_WAREHOUSE&lt;br&gt;SNOWFLAKE_DATABASE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#cc0000;fontSize=10;dashed=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="310" width="190" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="profiles_box" value="&lt;b&gt;dbt/profiles.yml (lokaal, niet in git)&lt;/b&gt;&lt;br&gt;Snowflake target (dev/prod)&lt;br&gt;Leest uit env_var()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffcccc;strokeColor=#cc0000;fontSize=10;dashed=1;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="680" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="env_label" value="⚠ Credentials — nooit committen" style="text;html=1;strokeColor=none;fillColor=none;align=center;fontSize=10;fontColor=#cc0000;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="270" width="210" height="25" as="geometry" />
+        </mxCell>
+
+        <!-- ===== ARROWS ===== -->
+        <!-- CBS → fetch_data -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="cbs" target="fetch" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- fetch → load -->
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#d6b656;strokeWidth=2;" edge="1" source="fetch" target="load" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- Politie → load -->
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#6c8ebf;strokeWidth=2;" edge="1" source="politie" target="load" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- load → RAW -->
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#82b366;strokeWidth=2;" edge="1" source="load" target="raw" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- RAW → staging -->
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#9673a6;strokeWidth=2;" edge="1" source="raw" target="staging" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- staging → tests -->
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#9673a6;strokeWidth=2;" edge="1" source="staging" target="tests" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- tests → marts -->
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#9673a6;strokeWidth=2;" edge="1" source="tests" target="marts" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- staging → DBT_DEV -->
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#82b366;strokeWidth=1;dashed=1;" edge="1" source="staging" target="dev" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- marts → DBT_PROD -->
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#2d7a2d;strokeWidth=1;dashed=1;" edge="1" source="marts" target="prod" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- marts → Power BI -->
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;strokeColor=#b85450;strokeWidth=2;" edge="1" source="marts" target="pbi" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- DBT_PROD → Power BI -->
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.8;entryY=0;entryDx=0;entryDy=0;strokeColor=#b85450;strokeWidth=2;" edge="1" source="prod" target="pbi" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- .env → load_data -->
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#cc0000;strokeWidth=1;dashed=1;" edge="1" source="env_box" target="load" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+        <!-- profiles.yml → dbt -->
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#cc0000;strokeWidth=1;dashed=1;" edge="1" source="profiles_box" target="marts" parent="1">
+          <mxCell as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
