@@ -108,6 +108,10 @@ dbt run
 dbt test
 ```
 
+## Pipeline Architectuur
+
+![Pipeline Workflow](docs/workflow.png)
+
 ## Snowflake structuur
 
 ```
