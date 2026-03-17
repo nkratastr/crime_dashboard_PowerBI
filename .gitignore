@@ -2,6 +2,9 @@
 .venv/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
 
 # Ruwe data (te groot voor git)
 data/raw/
@@ -10,10 +13,23 @@ data/processed/
 # Power BI temp bestanden
 *.tmp
 
-# Credentials (nooit in repo!)
+# Snowflake & omgevingsvariabelen (NOOIT in repo!)
 .env
+*.env
+
+# dbt configuratie met credentials
+dbt/profiles.yml
 
 # dbt logs en target
 dbt/logs/
 dbt/target/
 logs/
+
+# IDE bestanden
+.idea/
+.vscode/
+*.iml
+
+# OS bestanden
+.DS_Store
+Thumbs.db
