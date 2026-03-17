@@ -124,3 +124,8 @@ De data bevat twee regio niveaus:
 - `provincie` — provinciaal niveau
 
 Het veld `regio_type` wordt gebruikt om onderscheid te maken in de modellen.
+
+<img width="788" height="618" alt="donut_chart" src="https://github.com/user-attachments/assets/ffedb603-1e18-4ede-b792-8acca4ea1657" />
+<img width="1081" height="445" alt="per_regio" src="https://github.com/user-attachments/assets/5c57be39-ea53-43ae-8fff-367e51a26bf9" />
+<img width="1110" height="629" alt="total_crimes" src="https://github.com/user-attachments/assets/3778ac86-5fbe-4081-93c1-dc121f1b5db3" />
+
